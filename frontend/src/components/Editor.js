@@ -1,6 +1,7 @@
 import ListErrors from "./ListErrors";
 import React from "react";
 import agent from "../agent";
+import placeholder from "../imgs/placeholder.png";
 import { connect } from "react-redux";
 import {
   ADD_TAG,
@@ -49,10 +50,15 @@ class Editor extends React.Component {
 
     this.submitForm = (ev) => {
       ev.preventDefault();
+      let img_holder = this.props.image
+      if (this.props.image === "") {
+        img_holder = placeholder;
+      }
+
       const item = {
         title: this.props.title,
         description: this.props.description,
-        image: this.props.image,
+        image: img_holder,
         tagList: this.props.tagList,
       };
 
@@ -121,6 +127,7 @@ class Editor extends React.Component {
                       className="form-control"
                       type="text"
                       placeholder="Image url"
+                      defaultValue={placeholder}
                       value={this.props.image}
                       onChange={this.changeImage}
                     />
