@@ -1,7 +1,6 @@
 import ListErrors from "./ListErrors";
 import React from "react";
 import agent from "../agent";
-import placeholder from "../imgs/placeholder.png";
 import { connect } from "react-redux";
 import {
   ADD_TAG,
@@ -51,13 +50,10 @@ class Editor extends React.Component {
     this.submitForm = (ev) => {
       ev.preventDefault();
 
-      const img_choice =
-        this.props.image === "" ? placeholder : this.props.image;
-
       const item = {
         title: this.props.title,
         description: this.props.description,
-        image: img_choice,
+        image: this.props.description,
         tagList: this.props.tagList,
       };
 
