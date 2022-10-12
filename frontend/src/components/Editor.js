@@ -34,7 +34,7 @@ class Editor extends React.Component {
       this.props.onUpdateField(key, ev.target.value);
     this.changeTitle = updateFieldEvent("title");
     this.changeDescription = updateFieldEvent("description");
-    this.changeImage = updateFieldEvent('image');
+    this.changeImage = updateFieldEvent("image");
     this.changeTagInput = updateFieldEvent("tagInput");
 
     this.watchForEnter = (ev) => {
@@ -48,11 +48,11 @@ class Editor extends React.Component {
       this.props.onRemoveTag(tag);
     };
 
-
     this.submitForm = (ev) => {
       ev.preventDefault();
 
-      const img_choice = this.props.image === '' ? placeholder : this.props.image;
+      const img_choice =
+        this.props.image === "" ? placeholder : this.props.image;
 
       const item = {
         title: this.props.title,
