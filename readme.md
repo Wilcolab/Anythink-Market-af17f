@@ -10,4 +10,8 @@ When implementing a new feature or fixing a bug, please create a new pull reques
 
 ## First setup
 
-**[TODO 05/01/2018 @vanessa-cooper]:** _It's been a while since anyone ran a fresh copy of this repo. I think it's worth documenting the steps needed to install and run the repo on a new machine?_
+1. To first setup the development env, just run the docker-compoese file by using the command docker-compose up when in the repository root
+
+2. Test your connection with this address: http://localhost:3000/api/ping
+
+3. Create your own user in: http://localhost:3001/register
