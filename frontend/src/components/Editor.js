@@ -48,17 +48,20 @@ class Editor extends React.Component {
       this.props.onRemoveTag(tag);
     };
 
+    this.setDefaultImg = (ev) => {
+      if (this.props.image === "") {
+        return placeholder;
+      }
+      return this.props.image;
+    };
+
     this.submitForm = (ev) => {
       ev.preventDefault();
-      let img_holder = this.props.image
-      if (this.props.image === "") {
-        img_holder = placeholder;
-      }
 
       const item = {
         title: this.props.title,
         description: this.props.description,
-        image: img_holder,
+        image: ev.setDefaultImg(),
         tagList: this.props.tagList,
       };
 
@@ -127,7 +130,6 @@ class Editor extends React.Component {
                       className="form-control"
                       type="text"
                       placeholder="Image url"
-                      defaultValue={placeholder}
                       value={this.props.image}
                       onChange={this.changeImage}
                     />
