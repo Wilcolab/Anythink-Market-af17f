@@ -45,6 +45,9 @@ async def list_items(
     items_for_response = [
         ItemForResponse.from_orm(item) for item in items
     ]
+
+    for item in items_for_response:
+        item = handle_missing_image(item) 
     return ListOfItemsInResponse(
         items=items_for_response,
         items_count=len(items),
@@ -85,7 +88,10 @@ async def create_new_item(
 async def retrieve_item_by_slug(
     item: Item = Depends(get_item_by_slug_from_path),
 ) -> ItemInResponse:
-    return ItemInResponse(item=ItemForResponse.from_orm(item))
+    item_ret = ItemInResponse(item=ItemForResponse.from_orm(item))
+    
+    item_ret.item = handle_missing_image(item_ret.item)
+    return item_ret
 
 
 @router.put(
@@ -120,3 +126,8 @@ async def delete_item_by_slug(
     items_repo: ItemsRepository = Depends(get_repository(ItemsRepository)),
 ) -> None:
     await items_repo.delete_item(item=item)
+
+def handle_missing_image(item):
+    if(item.image == item.description):
+        item.image = "/placeholder.png"
+    return item
