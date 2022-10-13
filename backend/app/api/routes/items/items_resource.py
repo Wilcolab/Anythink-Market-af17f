@@ -48,6 +48,7 @@ async def list_items(
 
     for item in items_for_response:
         item = handle_missing_image(item) 
+    
     return ListOfItemsInResponse(
         items=items_for_response,
         items_count=len(items),
