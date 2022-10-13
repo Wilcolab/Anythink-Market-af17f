@@ -46,8 +46,8 @@ async def list_items(
         ItemForResponse.from_orm(item) for item in items
     ]
 
-    for item in items_for_response:
-        item = handle_missing_image(item) 
+    # for item in items_for_response:
+    #     item = handle_missing_image(item) 
     
     return ListOfItemsInResponse(
         items=items_for_response,
@@ -91,7 +91,7 @@ async def retrieve_item_by_slug(
 ) -> ItemInResponse:
     item_ret = ItemInResponse(item=ItemForResponse.from_orm(item))
     
-    item_ret.item = handle_missing_image(item_ret.item)
+    #item_ret.item = handle_missing_image(item_ret.item)
     return item_ret
 
 
