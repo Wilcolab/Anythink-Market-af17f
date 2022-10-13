@@ -49,10 +49,11 @@ class Editor extends React.Component {
 
     this.submitForm = (ev) => {
       ev.preventDefault();
+
       const item = {
         title: this.props.title,
         description: this.props.description,
-        image: this.props.image,
+        image: this.props.description,
         tagList: this.props.tagList,
       };
 
@@ -121,7 +122,6 @@ class Editor extends React.Component {
                       className="form-control"
                       type="text"
                       placeholder="Image url"
-                      value={this.props.image}
                       onChange={this.changeImage}
                     />
                   </fieldset>
