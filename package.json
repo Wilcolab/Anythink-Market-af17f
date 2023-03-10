@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "eslint": "^8.25.0",
-    "prettier": "^2.7.1",
-    "yarn": "^1.22.19"
-  }
-}
