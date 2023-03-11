@@ -68,8 +68,6 @@ async def create_new_item(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=strings.ITEM_ALREADY_EXISTS,
         )
-    image = handleMissingImage(item_create.image)
-
     item = await items_repo.create_item(
         slug=slug,
         title=item_create.title,
@@ -77,7 +75,7 @@ async def create_new_item(
         body=item_create.body,
         seller=user,
         tags=item_create.tags,
-        image=image
+        image=item_create.image
     )
     send_event('item_created', {'item': item_create.title})
     return ItemInResponse(item=ItemForResponse.from_orm(item))
@@ -122,8 +120,3 @@ async def delete_item_by_slug(
     items_repo: ItemsRepository = Depends(get_repository(ItemsRepository)),
 ) -> None:
     await items_repo.delete_item(item=item)
-
-def handleMissingImage(image):
-    if (not image):
-        image = '/placeholder.png'
-    return image 
