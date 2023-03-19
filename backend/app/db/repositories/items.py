@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import List, Optional, Sequence, Union
 
 from asyncpg import Connection, Record
@@ -119,6 +120,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         limit: int = 20,
         offset: int = 0,
         requested_user: Optional[User] = None,
+        title: Optional[str] = None,
     ) -> List[Item]:
         query_params: List[Union[str, int]] = []
         query_params_count = 0
@@ -208,6 +210,8 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
                 ),
             )
             # fmt: on
+        if title:
+            query = query.where(items.title.like(f"%{title}%"))
 
         query = query.limit(Parameter(query_params_count + 1)).offset(
             Parameter(query_params_count + 2),
