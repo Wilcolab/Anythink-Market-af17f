@@ -1,4 +1,3 @@
-from logging import Logger
 from typing import List, Optional, Sequence, Union
 
 from asyncpg import Connection, Record
